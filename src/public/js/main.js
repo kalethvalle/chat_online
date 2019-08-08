@@ -14,7 +14,7 @@ $(function (){
         $mensajeBox.val('');
     });
 
-    // recibe el mensaje para mostrarlo en el cuerpo del chat
+    // recibe el mensaje para mostrarlo en el cuerpo del chat uno por uno
     socket.on('nuevo_mensaje', function (nuevo_mensaje){
        $chat.append(nuevo_mensaje + '<br/>');
     });
