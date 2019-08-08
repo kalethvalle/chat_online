@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/6232fb8ed3.js"></script>
+
     <!-- boostrap.com -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,30 +23,67 @@
         <a class="navbar-brand mx-auto" href="/">Chat Online</a>
     </nav>
 
+    <!-- section del "login" -->
+    <div id="main_login" class="card col-md-4 mt-5 mx-auto">
+        <div class="card-header">
+            <h3>Ingresa un Usuario</h3>
+        </div>
+        <p id="login_error"></p>
+        <div class="card-body">
+            <form id="login_form">
+                <input id="login_name" type="text" class="form-control">
+                <button type="submit" class="btn btn-warning btn-block mt-2">
+                    <i class="fas fa-location-arrow"></i> enviar
+                </button>
+
+            </form>
+        </div>
+    </div>
+
     <!-- inicia cuerpo de el chat -->
-    <div class="container">
-        <div class="col-md-6 mt-4">
-            <div class="card">
-                <!-- encabezado del chat -->
-                <div class="card-header">
-                    <h4>Chat's </h4>
-                </div>
-                <div id="chat" class="card-body">
-                    <!-- cuerpo del chat -->
-                </div>
-                <!--  boton para enviar el mensaje al servidor -->
-                <form id="mensaje-form" class="card-footer">
-                    <div class="input-group-append">
-                        <input id="mensaje" type="text" class="form-control">
-                        <input type="submit" class="btn btn-warning">
+    <div id="main_contenedor" class="container">
+        <div class="row mt-2">
+            <div class="col-md-6 offset-md-1">
+                <div class="card">
+                    <!-- encabezado del chat -->
+                    <div class="card-header">
+                        <h4>Chat's </h4>
                     </div>
-                </form>
+                    <div id="chat" class="card-body">
+                        <!-- cuerpo del chat -->
+                    </div>
+                    <!--  boton para enviar el mensaje al servidor -->
+                    <form id="mensaje-form" class="card-footer">
+                        <div class="input-group">
+                            <input id="mensaje" type="text" class="form-control">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fas fa-location-arrow"></i> enviar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- section de usuarios -->
+            <div class="card col-md-3">
+                <!-- encabezado de users -->
+                <div class="card-header">
+                    <h3>usuarios</h3>
+                </div>
+                <div class="card-body">
+                    <div id="nombre_usuarios">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/main.js"></script>
 </body>
