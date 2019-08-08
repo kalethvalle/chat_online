@@ -8,3 +8,8 @@ body{
 #main_contenedor{
     display: none;
 }
+
+.personal{
+    color: darkblue;
+    font-style: italic;
+}

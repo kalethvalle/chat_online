@@ -36,7 +36,11 @@ $(function (){
     // para enviar el mensaje al servidor <sockets.js>
     $mensajeForm.submit(function (e) {
         e.preventDefault();
-        socket.emit('enviando_mensaje', $mensajeBox.val());
+        socket.emit('enviando_mensaje', $mensajeBox.val(), cb => {
+            $chat.append(`
+                <p class="alert alert-danger">${cb}</p>
+            `);
+        });
         $mensajeBox.val('');
     });
 
@@ -45,6 +49,13 @@ $(function (){
        $chat.append('<b>' + nuevo_mensaje.name + '</b>: ' + nuevo_mensaje.msg + '<br/>');
     });
 
+    socket.on('personal', function(msj_personal) {
+        $chat.append(`
+           <p class="personal"><b>${msj_personal.name}:</b> ${msj_personal.msj}</p>
+        `);
+    });
+    
+    // muestra en el front todos los usuarios que estan conectados
     socket.on('usuario', data => {
         let html = '';
         for(let i = 0; i < data.length; i++){
