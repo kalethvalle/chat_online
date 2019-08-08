@@ -1,7 +1,8 @@
+const http = require('http');
+const path = require('path');
+
 const express = require('express'); 
 const socketio = require('socket.io');
-
-const http = require('http');
 
 const app = express();
 const server = http.createServer(app);
@@ -9,14 +10,16 @@ const server = http.createServer(app);
 //conexion en tiempo real web socket
 const io = socketio.listen(server);
 
-io.on('connection', socket => {
-    console.log('nuevo usuario conectado');
-});
+// configuracion puerto del servidor
+app.set('port', process.env.PORT || 3000);
 
-// pasa los archivos fijos para mostrarlos en el
-app.use(express.static('public'))
+// exporta conexion a <sockets.js>
+require('./sockets')(io);
+
+// pasa los archivos fijos para mostrarlos en el navegador
+app.use(express.static(path.join(__dirname, 'public')));
 
 // incia servidor local 
-server.listen(3000, () => {
-    console.log('servidor en el puerto 3000');
+server.listen(app.get('port'), () => {
+    console.log('servidor en el puerto', app.get('port'));
 }); 
