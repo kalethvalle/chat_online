@@ -1,12 +1,16 @@
 // conexion de socket del servidor
 module.exports = function (io) {
     let usuarios = {};
+    let nameUser = [];
+    let i = 0;
 
     io.on('connection', socket => {
         // console.log('nuevo usuario conectado');
 
         socket.on('nuevo_user', (nuevo_user, cb) => {
-            console.log(nuevo_user + ' Se ha conectado...');
+            nameUser.push(nuevo_user);
+            i = i + 1;
+            console.log(nuevo_user + ' Se ha conectado... ' + i);
             if (nuevo_user in usuarios) {
                 cb(false);
             } else {
@@ -42,7 +46,8 @@ module.exports = function (io) {
                 // envia el mensaje a todos los usuarios conectados
                 io.sockets.emit('nuevo_mensaje', {
                     name: socket.users,
-                    msg: enviando_mensaje
+                    msg: enviando_mensaje,
+                    userIndex: nameUser[i-1]
                 });
             }
 

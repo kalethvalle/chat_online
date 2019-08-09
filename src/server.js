@@ -11,7 +11,7 @@ const server = http.createServer(app);
 const io = socketio.listen(server);
 
 // configuracion puerto del servidor
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 443);
 
 // exporta conexion a <sockets.js>
 require('./sockets')(io);
