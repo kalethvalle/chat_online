@@ -8,10 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/6232fb8ed3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
     <!-- boostrap.com -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- este es mi css -->
     <link rel="stylesheet" href="/css/main.css">
@@ -19,25 +22,34 @@
 </head>
 
 <body>
-    <!-- titulo de la pagina -->
-    <nav class="navbar navbar-light bg-warning">
-        <a class="navbar-brand mx-auto" href="/">Chat Online</a>
-    </nav>
-
     <!-- section del "login" -->
     <div id="main_login" class="card col-md-4 mt-5 mx-auto">
-        <div class="card-header">
-            <h3>Ingresa un Usuario</h3>
-        </div>
+        <br>
+        <h2>
+            <i class="fas fa-mobile-alt" style="font-size: 35px;"></i> Chat online
+        </h2>
+        <br>
+
+        <h3>Iniciar sesión</h3>
         <p id="login_error"></p>
         <div class="card-body">
             <form id="login_form">
-                <input id="login_name" type="text" class="form-control">
-                <button type="submit" class="btn btn-warning btn-block mt-2">
-                    <i class="fas fa-location-arrow"></i> enviar
+                <input id="login_name" type="text" placeholder="Nombre de usuario" class="form-control">
+                <br>
+                <button type="submit" class="btn btn-primary btn-block mt-2">
+                    Enviar
                 </button>
 
             </form>
+            <br />
+            <br />
+
+
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter">
+                Condiciones de uso
+            </button>
+
+
         </div>
     </div>
 
@@ -50,7 +62,7 @@
                     <div class="card-header">
                         <h4>Chat's </h4>
                     </div>
-                    <div id="chat" class="card-body">
+                    <div id="chat" class="card-body my-custom-scrollbar scrollbar-frozen-dreams">
                         <!-- cuerpo del chat -->
                     </div>
                     <!--  boton para enviar el mensaje al servidor -->
@@ -58,7 +70,7 @@
                         <div class="input-group">
                             <input id="mensaje" type="text" class="form-control">
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-location-arrow"></i> enviar
                                 </button>
                             </div>
@@ -68,24 +80,58 @@
             </div>
 
             <!-- section de usuarios -->
-            <div class="card col-md-3">
+            <div class="card col-md-4">
                 <!-- encabezado de users -->
                 <div class="card-header">
                     <h3>usuarios</h3>
                 </div>
                 <div class="card-body">
-                    <div id="nombre_usuarios">
+                    <!-- <div > -->
+                    <div class="card" style="width: 15rem;">
+                        <ul id="nombre_usuarios" class="list-group list-group-flush">
 
+                        </ul>
                     </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
     </div>
     <audio id="sonido" src="audio.mp3" value="play"></audio>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Condiciones de uso</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
+        // var ps = new PerfectScrollbar(myCustomScrollbar);
+
+        var scrollbarY = myCustomScrollbar.querySelector('.ps.ps--active-y>.ps__scrollbar-y-rail');
+
+        // myCustomScrollbar.onscroll = function() {
+        //     scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
+        // }
+    </script>
+
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/main.js"></script>
 </body>
